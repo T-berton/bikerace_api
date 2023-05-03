@@ -12,12 +12,12 @@
 
 ActiveRecord::Schema[7.0].define(version: 2023_03_26_071445) do
   create_table "locations", force: :cascade do |t|
-    t.integer "riders_id"
-    t.string "latitude"
-    t.string "longitude"
+    t.integer "rider_id"
+    t.decimal "latitude", precision: 10, scale: 2
+    t.decimal "longitude", precision: 10, scale: 2
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["riders_id"], name: "index_locations_on_riders_id"
+    t.index ["rider_id"], name: "index_locations_on_rider_id"
   end
 
   create_table "riders", force: :cascade do |t|
@@ -30,12 +30,12 @@ ActiveRecord::Schema[7.0].define(version: 2023_03_26_071445) do
   end
 
   create_table "submissions", force: :cascade do |t|
-    t.integer "riders_id"
+    t.string "firstname"
+    t.string "lastname"
     t.string "email_address"
     t.string "slogan_idea"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["riders_id"], name: "index_submissions_on_riders_id"
   end
 
 end

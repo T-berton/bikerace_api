@@ -19,7 +19,7 @@ class SubmissionsController < ApplicationController
 
     def show
         begin  
-        @submission = Submission.find(params([:id]))
+        @submission = Submission.find(params[:id])
         render json: @submission
         rescue ActiveRecord::RecordNotFound => e
             render json: {error: "Record Not Found"}, status: :not_found 
@@ -30,20 +30,17 @@ class SubmissionsController < ApplicationController
 
     def update
         @submission = Submission.find(params[:id])
-        if @submission.update_attributes(submission_params)
+        if @submission.update(submission_params)
             render json: @submission, status: :accepted
         else
-          render json: @submission.errors, status :unprocessable_entity
+          render json: @submission.errors, status: :unprocessable_entity
         end
     end
-    
-    
-    
-    
+        
 
     private 
         def submission_params
-            params.require(:submission).permit(:riders_id,:email_address,:slogan_idea)
+            params.require(:submission).permit(:firstname,:lastname,:email_address,:slogan_idea)
         end 
     
     
